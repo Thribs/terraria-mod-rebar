@@ -1,0 +1,4 @@
+This mod adds **Rebar**, a reinforcement item
+
+Place it *on blocks or walls* to make them resistant to explosions
+Rebar is invisible in gameplay and protects tiles and walls from explosion damage

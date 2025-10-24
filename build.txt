@@ -1,0 +1,6 @@
+displayName = Rebar
+author = Thribs
+version = 0.1
+homepage = https://github.com/Thribs/terraria-mod-rebar
+description: adds a structural reinforcement you can place behind walls or blocks to make them blast-proof
+
