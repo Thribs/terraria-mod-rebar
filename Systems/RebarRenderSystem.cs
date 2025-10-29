@@ -1,3 +1,4 @@
+/*
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -14,28 +15,31 @@ namespace Rebar.Systems
 			{
 				try 
 				{
-					overlayTexture = ModContent.Request<Texture2D>("Rebar/Assets/RebarOverlay").Value;
+					// overlayTexture = ModContent.Request<Texture2D>("Rebar/Assets/RebarOverlay").Value;
 				}
 				catch {
-					overlayTexture = null;
+					// overlayTexture = null;
 				}
 			}
 		}
 		
 		public override void Unload()
 		{
-			overlayTexture = null;
+			// overlayTexture = null;
 		}
 		
+		/*
 		public override void PostDrawTiles()
 		{
 			if (Main.gameMenu) return;
 			if (!RebarSystem.DebugOverlay) return;
+			
 			if (overlayTexture == null)
 			{
 				DrawFallback();
 				return;
 			}
+			
 			
 			var spriteBatch = Main.spriteBatch;
 			spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
@@ -64,7 +68,9 @@ namespace Rebar.Systems
 			
 			spriteBatch.End();
 		}
+		*/
 		
+		/*
 		private void DrawFallback()
 		{
 			var spriteBatch = Main.spriteBatch;
@@ -98,3 +104,4 @@ namespace Rebar.Systems
 		}
 	}
 }
+*/

@@ -1,18 +1,25 @@
+/*
 using System.IO;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
-using Rebar.Systems;
 
 namespace Rebar.Networking {
-	public class RebarPacketHandler
+	public class RebarPacketHandler : ModSystem
 	{
+	}
+}
+/*
 		private const byte PacketRebarPlacement = 0;
 		
 		public static void SendRebarPlacement(int i, int j, bool state) {
+			/*
 			if (Main.netMode == NetmodeID.SinglePlayer)
 				return;
 			
-			ModPacket packet = RebarMod.Instance.GetPacket();
+			ModPacket packet = ModContent.GetInstance<Rebar>().GetPacket();
 			packet.Write(PacketRebarPlacement);
 			packet.Write(i);
 			packet.Write(j);
@@ -21,17 +28,18 @@ namespace Rebar.Networking {
 		}
 		
 		public static void Handle(BinaryReader reader, int whoAmI) {
-			byte type = reader.readByte();
+			/* byte type = reader.readByte();
 			if (type == PacketRebarPlacement)
 			{
-				int i = reader.readInt16();
-				int j = reader.readInt16();
-				bool state = reader.readBoolean();
+				int i = reader.ReadInt16();
+				int j = reader.ReadInt16();
+				bool state = reader.ReadBoolean();
 				
 				if (!WorldGen.InWorld(i, j)) return;
 				
 				RebarSystem.hasRebar[i, j] = state;
 				
+				/*
 				if (Main.netMode == NetmodeID.Server)
 				{
 					ModPacket packet = ModContent.GetInstance<Rebar>().GetPacket();
@@ -45,3 +53,4 @@ namespace Rebar.Networking {
 		}
 	}
 }
+*/

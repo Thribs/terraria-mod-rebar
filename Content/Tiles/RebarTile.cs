@@ -2,8 +2,9 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ID;
+using Rebar.Systems;
 
-namespace RebarMod.Tiles
+namespace Rebar.Tiles
 {
 	public class RebarTile : ModTile
 	{
@@ -14,8 +15,7 @@ namespace RebarMod.Tiles
 			Main.tileLavaDeath[Type] = true;
 			Main.tileLighted[Type] = true;
 			Main.tileBlendAll[Type] = false;
-			
-			AddMapEntry(new Color(100, 100, 100), "Rebar");
+			AddMapEntry(new Color(100, 100, 100));
 			DustType = DustID.Iron;
 		}
 	}
