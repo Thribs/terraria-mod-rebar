@@ -1,5 +1,13 @@
-# This file will automatically update with entries for new content after a build and reload.
-{
-  "Mods.Rebar.Items.Rebar.DisplayName": "My Item",
-  "Mods.Rear.Items.Rebar.Tooltip": "Place behind blocks to make them explosion-proof"
+Mods: {
+	Rebar.Items.Rebar.DisplayName: My Item
+	Rear.Items.Rebar.Tooltip: Place behind blocks to make them explosion-proof
 }
+
+Items: {
+	RebarItem: {
+		Tooltip: ""
+		DisplayName: Rebar Item
+	}
+}
+
+"Keybinds.toggle Rebar overlay.DisplayName": toggle  Rebar overlay

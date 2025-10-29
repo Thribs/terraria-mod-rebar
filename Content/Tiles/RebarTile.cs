@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Rebar.Systems;
 
-namespace Rebar.Tiles
+namespace Rebar.Content.Tiles
 {
 	public class RebarTile : ModTile
 	{

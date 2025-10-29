@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Rebar.Systems;
 using Terraria.Audio;
 
-namespace Rebar.Items
+namespace Rebar.Content.Items
 {
 	public class RebarItem : ModItem
 	{
