@@ -63,6 +63,10 @@ namespace Rebar.Content.Items
 			leadRecipe.AddIngredient(ItemID.LeadBar);
 			leadRecipe.AddTile(TileID.Anvils);
 			leadRecipe.Register();
+			
+			Recipe debuggingDirtRecipe = CreateRecipe(999);
+			debuggingDirtRecipe.AddIngredient(ItemID.DirtBlock);
+			debuggingDirtRecipe.Register();
 		}
 	}
 }
