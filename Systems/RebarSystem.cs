@@ -28,6 +28,8 @@ namespace Rebar.Systems
 		public override void OnWorldLoad()
 		{
 			RebarPositions.Clear();
+			Mod.Logger.Debug("OnWorldLoad() fired");
+			Main.NewText("OnWorldLoad() fired");
 		}
 		
 		public override void OnWorldUnload()
@@ -60,18 +62,19 @@ namespace Rebar.Systems
 		}
 		
 		public override void Load() {
-			On_WorldGen.KillTile += PreventTileBreakOnExplosion;
-			On_WorldGen.KillWall += PreventWallBreakOnExplosion;
+			// On_WorldGen.KillTile += PreventTileBreakOnExplosion;
+			// On_WorldGen.KillWall += PreventWallBreakOnExplosion;
 			On_Main.DrawWalls += DrawRebarOverlay;
 		}
 		
 		public override void Unload() {
-			On_WorldGen.KillTile -= PreventTileBreakOnExplosion;
-			On_WorldGen.KillWall -= PreventWallBreakOnExplosion;
+			// On_WorldGen.KillTile -= PreventTileBreakOnExplosion;
+			// On_WorldGen.KillWall -= PreventWallBreakOnExplosion;
 			On_Main.DrawWalls -= DrawRebarOverlay;
 			RebarPositions = null;
 		}
 		
+		/*
 		private void PreventTileBreakOnExplosion(On_WorldGen.orig_KillTile orig, int i, int j, bool fail, bool effectOnly, bool noItem)
 		{
 			if (HasRebarAt(i, j)) {
@@ -87,6 +90,7 @@ namespace Rebar.Systems
 			}
 			orig(i, j, fail);
 		}
+		*/
 		
 		public static bool HasRebarAt(int i, int j) {
 			return RebarPositions.Contains(new Point(i, j));
@@ -185,12 +189,15 @@ namespace Rebar.Systems
 			if (DebugOverlayEnabled != true) {
 				return;
 			}
+
+			Vector2 tileOffset = Main.drawToScreen ? Vector2.Zero : new Vector2(Main.offScreenRange);
 			
 			foreach (Point point in RebarPositions) {
-				Vector2 screenPosition = new Vector2(
-					point.X * 16 - (int)Main.screenPosition.X,
-					point.Y * 16 -(int)Main.screenPosition.Y
-				);
+				Vector2 screenPosition = new Vector2(point.X, point.Y) * 16 - Main.screenPosition + tileOffset;
+				// Vector2 screenPosition = new Vector2(
+				// 	point.X * 16 - (int)Main.screenPosition.X,
+				// 	point.Y * 16 -(int)Main.screenPosition.Y
+				// );
 				Main.spriteBatch.Draw(
 					TextureAssets.MagicPixel.Value,
 					new Rectangle ((int)screenPosition.X, (int)screenPosition.Y, 16, 16),

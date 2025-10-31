@@ -15,7 +15,7 @@ namespace Rebar.Content.Items
 			Item.maxStack = 999;
 			Item.useTurn = true;
 			Item.autoReuse = true;
-			Item.useAnimation = 15;
+			Item.useAnimation = 10;
 			Item.useTime = 10;
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.value = 100;
@@ -26,30 +26,28 @@ namespace Rebar.Content.Items
 		}
 		
 		public override bool? UseItem(Player player) {
-			Point position = Main.MouseWorld.ToTileCoordinates();
-			// if (!RebarSystem.HasRebarAt(position.X, position.X))
-			if (!WorldGen.InWorld(position.X, position.Y))
+			
+			int positionX = Player.tileTargetX;
+			int positionY = Player.tileTargetY;
+			if (!WorldGen.InWorld(positionX, positionY))
 			{
 				return false;
 			}
-			// RebarSystem.PlaceRebar(position);
-			RebarSystem.SetRebar(new Point(position.X, position.Y), true);
+			if (RebarSystem.HasRebarAt(positionX, positionY)) {
+				return false;
+			}
+			Tile tile = Main.tile[positionX, positionY];
+
+			if (!tile.HasTile || tile.WallType <= 0)
+			{
+				return false;
+			}
+			RebarSystem.SetRebar(new Point(positionX, positionY), true);
 			if (Main.netMode != NetmodeID.Server) {
-				Main.NewText($"placed rebar at {position}", 100, 255, 100);
+				Main.NewText($"placed rebar at {positionX},{positionY}", 100, 255, 100);
 			}
 			SoundEngine.PlaySound(SoundID.Tink);
 			Item.stack--;
-			/*
-			int i = Player.tileTargetX;
-			int j = Player.tileTargetY;
-			if (!WorldGen.InWorld(i, j))
-				return false;
-			
-			RebarSystem.SetRebar(i, j, true, sync: true);
-			
-			if (Main.netMode != NetmodeID.Server)
-				CombatText.NewText(new Microsoft.Xna.Framework.Rectangle(i * 16, j * 16, 16, 16), Microsoft.Xna.Framework.Color.Gray, "Rebar!");
-			*/
 			return true;
 		}
 		
@@ -63,10 +61,6 @@ namespace Rebar.Content.Items
 			leadRecipe.AddIngredient(ItemID.LeadBar);
 			leadRecipe.AddTile(TileID.Anvils);
 			leadRecipe.Register();
-			
-			Recipe debuggingDirtRecipe = CreateRecipe(999);
-			debuggingDirtRecipe.AddIngredient(ItemID.DirtBlock);
-			debuggingDirtRecipe.Register();
 		}
 	}
 }
